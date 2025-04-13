@@ -14,7 +14,7 @@ class LoadingAnimation extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFFFF1E6), Color(0xFFFDFCFB)],
+            colors:const [Color(0xFFFFF1E6), Color(0xFFFDFCFB)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -26,20 +26,27 @@ class LoadingAnimation extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 0.3.sh),
               child: DefaultTextStyle(
                   style: TextStyle(
-                      color: Color(0xFF444654),
+                      color:const Color(0xFF444654),
                       fontWeight: FontWeight.bold,
                       fontSize: 25.sp),
-                  child: AnimatedTextKit(animatedTexts: [
-                    TyperAnimatedText(text,
-                        speed: Duration(
-                          milliseconds: 100,
-                        )),
-                        TyperAnimatedText("Please Wait...", speed: Duration(
-                          milliseconds: 100,
-                        ))
-                  ])),
+                  child: AnimatedTextKit(
+                      totalRepeatCount: 1,
+                      isRepeatingAnimation: false,
+                      animatedTexts: [
+                        TyperAnimatedText(text,
+                            speed: Duration(
+                              milliseconds: 100,
+                            )),
+                        TyperAnimatedText("Wait...",
+                            speed: Duration(
+                              milliseconds: 100,
+                            ))
+                      ])),
             ),
-            Center(child: Hero(tag: "loadingAnimation",child: Lottie.asset(path,repeat: true))),
+            Center(
+                child: Hero(
+                    tag: "loadingAnimation",
+                    child: Lottie.asset(path, repeat: true))),
           ],
         ),
       ),

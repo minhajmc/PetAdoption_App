@@ -7,15 +7,19 @@ class TextWidget extends StatelessWidget {
  final String ?fontFamily;
  final FontWeight fontWeight;
  final double fontSize;
+  TextAlign ?textAlign;
+ 
   
-  
-  const TextWidget({
+   TextWidget({
     super.key,
     required this.words,
     required this.color,
     this.fontFamily,
     required this.fontWeight,
-    required this.fontSize
+    this.textAlign,
+    required this.fontSize,
+    
+   
 
   });
 
@@ -23,11 +27,13 @@ class TextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       words,
+      textAlign: textAlign,
       style: TextStyle(
         color: color,
         fontFamily:fontFamily ,
        fontWeight:fontWeight,
        fontSize: fontSize.sp ,
+       
       ),
       
     );
