@@ -51,11 +51,11 @@ class _WelcomeAuthScreen extends State<Welcomeauthscreen> {
                     height: 0.02.sh,
                   ),
                   SizedBox(
-                    child: DefaultTextStyle(
+                    child: DefaultTextStyle(textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 32.spMin),
+                            fontSize: 32.spMin,),
                         child:isAnimated?const Text("Discover a world of joy and companionship at Happy pet"): AnimatedTextKit(
                             repeatForever: false,onFinished: () {
                               setState(() {

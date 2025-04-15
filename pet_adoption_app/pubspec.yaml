@@ -41,6 +41,9 @@ dependencies:
   shared_preferences: ^2.5.3
   lottie: ^3.3.1
   animated_text_kit: ^4.2.3
+  getwidget: ^6.0.0
+
+ 
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +72,7 @@ flutter:
    - assets/loginImage/
    - assets/registerImages/animation/
    - assets/onboarding/
+   - assets/splashscreen/walking_with_dog.json
    
   #   - images/a_dot_ham.jpeg
 
@@ -97,3 +101,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+
