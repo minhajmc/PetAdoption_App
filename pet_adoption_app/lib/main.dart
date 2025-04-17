@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_adoption_app/services/api_services.dart';
 import 'package:pet_adoption_app/viewmodels/auth_provider/login_provider.dart';
 import 'package:pet_adoption_app/viewmodels/auth_provider/register_provider.dart';
-import 'package:pet_adoption_app/views/home/home.dart';
+import 'package:pet_adoption_app/views/home/homescreens/home.dart';
 
 import 'package:pet_adoption_app/views/splashscreen/splashscreen.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +32,7 @@ class PetAdoptionApp extends StatelessWidget {
         child: MaterialApp(
         title: "Pet Adoption App",
         debugShowCheckedModeBanner: false,
-        home: Splashscreen(),
+        home: HomeScreen(),
       ),);
       },
     );

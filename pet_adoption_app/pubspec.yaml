@@ -43,6 +43,7 @@ dependencies:
   animated_text_kit: ^4.2.3
   getwidget: ^6.0.0
 
+
  
 
 dev_dependencies:
@@ -73,6 +74,8 @@ flutter:
    - assets/registerImages/animation/
    - assets/onboarding/
    - assets/splashscreen/walking_with_dog.json
+   - assets/mainuislideimg/carouselimg/
+   - assets/mainuislideimg/categoriesimg/
    
   #   - images/a_dot_ham.jpeg
 
