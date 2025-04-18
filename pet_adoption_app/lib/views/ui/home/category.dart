@@ -6,7 +6,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 
 class CategoryofPet extends StatefulWidget {
-  CategoryofPet({super.key});
+  const CategoryofPet({super.key});
 
   @override
   State<CategoryofPet> createState() => _CategoryofPetState();
@@ -27,7 +27,7 @@ class _CategoryofPetState extends State<CategoryofPet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 12, left: 12),
+      padding:  EdgeInsets.only(right: 6.w, left: 12.w),
       child: SizedBox(
         height: 50.h,
         width: double.infinity,
@@ -38,7 +38,7 @@ class _CategoryofPetState extends State<CategoryofPet> {
           itemBuilder: (context, index) {
             final currentIndex=index==onIndex;
             return Padding(
-              padding: const EdgeInsets.only(left: 15),
+              padding:  EdgeInsets.only(left: 15.w),
               child: InkWell(
                 onTap: () {
                   setState(() {
@@ -51,10 +51,10 @@ class _CategoryofPetState extends State<CategoryofPet> {
                   width: 120.w,
                   decoration: BoxDecoration(
                     color: currentIndex?Color(0xFF827397): Color.fromARGB(171, 220, 219, 219),
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.r)),
                   ),
                   padding: EdgeInsets.only(
-                    left: 20,
+                    left: 20.w,
                   ),
                   child: Row(
                     children: [
@@ -63,7 +63,7 @@ class _CategoryofPetState extends State<CategoryofPet> {
                       GFAvatar(
                         backgroundImage: AssetImage(
                             categoryofPets[index]["image"]),
-                        size: 20,
+                        size: 20.w,
                         backgroundColor:
                         categoryofPets[index]["color"],
                       ),

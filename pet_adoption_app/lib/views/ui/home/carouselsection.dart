@@ -55,8 +55,7 @@ class CarouselSection extends StatelessWidget {
       items: carouselData.map(
         (data) {
           return SizedBox(
-              // width: 1.sw,
-              // height: 0.8.sh,
+             
 
               child: Padding(
             padding:  EdgeInsets.all(6.r),

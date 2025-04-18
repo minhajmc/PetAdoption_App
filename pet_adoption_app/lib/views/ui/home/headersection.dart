@@ -9,6 +9,7 @@ import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 
 class Headersection extends StatelessWidget {
 final  double gfSize;
+// final VoidCallback opendrawer;
   const Headersection({super.key,required this.gfSize});
 
   @override
@@ -34,8 +35,9 @@ final  double gfSize;
             Icons.menu,
             color: GFColors.DARK,
           ),
-          onPressed: () {
-            
+          // onPressed: opendrawer,
+          onPressed: (){
+          Scaffold.of(context).openDrawer();
           },
           type: GFButtonType.transparent,
         ));
