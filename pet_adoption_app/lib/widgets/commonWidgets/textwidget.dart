@@ -7,10 +7,10 @@ class TextWidget extends StatelessWidget {
  final String ?fontFamily;
  final FontWeight fontWeight;
  final double fontSize;
-  TextAlign ?textAlign;
+ final TextAlign ?textAlign;
  
   
-   TextWidget({
+ const  TextWidget({
     super.key,
     required this.words,
     required this.color,

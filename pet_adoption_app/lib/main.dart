@@ -3,9 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_adoption_app/services/api_services.dart';
 import 'package:pet_adoption_app/viewmodels/auth_provider/login_provider.dart';
 import 'package:pet_adoption_app/viewmodels/auth_provider/register_provider.dart';
-import 'package:pet_adoption_app/views/ui/home/home.dart';
+import 'package:pet_adoption_app/viewmodels/profile_provider/profileget_provider.dart';
+import 'package:pet_adoption_app/viewmodels/profile_provider/profileupdate_provider.dart';
+import 'package:pet_adoption_app/views/splashscreen/splashscreen.dart';
 import 'package:pet_adoption_app/views/ui/profile/editprofile.dart';
-import 'package:pet_adoption_app/views/ui/root_scaffold/rootscaffold.dart';
 
 import 'package:provider/provider.dart';
 
@@ -28,15 +29,19 @@ class PetAdoptionApp extends StatelessWidget {
       builder: (context, child) {
         return MultiProvider(providers: [
           ChangeNotifierProvider(create: (context) => LoginProvider(),),
-          ChangeNotifierProvider(create: (context) => RegisterProvider(),)
+          ChangeNotifierProvider(create: (context) => RegisterProvider(),),
+          ChangeNotifierProvider(create: (context) => ProfileUpdateProvider(),),
+          ChangeNotifierProvider(create: (context) => ProfileGetProvider(),),
         ],
         child: MaterialApp(
         title: "Pet Adoption App",
         debugShowCheckedModeBanner: false,
-        home:EditProfile(),
+        home:Splashscreen(),
       ),);
       },
     );
   }
 }
+
+
 

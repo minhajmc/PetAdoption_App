@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:pet_adoption_app/services/api_services.dart';
 import 'package:pet_adoption_app/services/bearer_token_service.dart';
-import '../../models/model_login.dart';
+import '../../models/auth_model/model_login.dart';
 
 class LoginProvider extends ChangeNotifier {
   bool _isLoading=false;
@@ -27,6 +27,11 @@ class LoginProvider extends ChangeNotifier {
         log("Token: $token");
 
         await BearerTokenService().saveToken(token);
+        // log("Token saved: $token");
+      
+        await ApiServices.barearToken(token);
+        //token given to api services
+        // log("Bearer Token: ${ApiServices.dio.options.headers["Authorization"]}");
 
         _isLogged = true;
         _errorMessage = "Login SuccessFull";

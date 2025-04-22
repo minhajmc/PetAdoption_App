@@ -1,22 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:pet_adoption_app/viewmodels/profile_provider/profileget_provider.dart';
 
 import 'package:pet_adoption_app/views/ui/home/carouselsection.dart';
 import 'package:pet_adoption_app/views/ui/home/category.dart';
 import 'package:pet_adoption_app/views/ui/home/headersection.dart';
 import 'package:pet_adoption_app/views/ui/home/searchwithicon.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
 
-  HomeScreen({super.key});
+ const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final List<String> image = [
     "assets/mainuislideimg/carouselimg/puppy_img6.jpg",
     "assets/mainuislideimg/carouselimg/puppy_img6.jpg",
     "assets/mainuislideimg/carouselimg/puppy_img6.jpg"
   ];
+
+@override
+void didChangeDependencies() {
+  super.didChangeDependencies();
+
+  // Avoid triggering rebuild while widget is still building
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    Provider.of<ProfileGetProvider>(context, listen: false).getProfile();
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {

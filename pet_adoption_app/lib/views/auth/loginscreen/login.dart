@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pet_adoption_app/services/sharedprefernces/emailsave.dart';
 
 import 'package:pet_adoption_app/viewmodels/auth_provider/login_provider.dart';
 import 'package:pet_adoption_app/views/auth/loginscreen/image.dart';
 import 'package:pet_adoption_app/views/auth/signupscreen/signup.dart';
+import 'package:pet_adoption_app/views/ui/root_scaffold/rootscaffold.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/elevatedButtonWidget.dart';
 
 import 'package:pet_adoption_app/widgets/authwidgets/snackbar.dart';
@@ -40,15 +42,15 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor:const Color(0xFFF5F0E6),
+        backgroundColor: const Color(0xFFF5F0E6),
         body: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Stack(
             children: [
               //image with text
-      
-             const ImageLogin(),
-      
+
+              const ImageLogin(),
+
               Form(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 key: _formKey,
@@ -116,21 +118,27 @@ class _LoginScreenState extends State<LoginScreen> {
                             final providerLogin = Provider.of<LoginProvider>(
                                 context,
                                 listen: false);
-      
+
                             if (_formKey.currentState!.validate()) {
                               await providerLogin.login(
                                   emailController.text.trim(),
                                   passController.text.trim());
-      
+
                               if (providerLogin.isLogged == true) {
+                                
+                                EmailSave.saveEmail(
+                                    emailController.text.trim());
+                                     Navigator.push(context, MaterialPageRoute(builder: (context) => RootScaffold()));
+
                                 snackbar(context, providerLogin.errorMessage,
-                                    0xFF6BCB77);
+                                    0xFF6BCB77,Icons.check_circle_outline_outlined);
+                                   
                               } else {
-                                snackbar(context, "Login Failed", 0xFFE63946);
+                                snackbar(context, "Login Failed", 0xFFE63946,Icons.close_outlined);
                               }
                             } else {
                               snackbar(context, "Oops! All fields are required",
-                                  0xFFFF8E3C);
+                                  0xFFFF8E3C,Icons.close_rounded);
                             }
                           },
                         ),
@@ -138,9 +146,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 40.h,
                         ),
                         TextbuttonAuth(
-                            text: "Don’t have an account?",
-                            buttonText: "Sign up",
-                            navigateTo:const Regscreen(),),
+                          text: "Don’t have an account?",
+                          buttonText: "Sign up",
+                          navigateTo: const Regscreen(),
+                        ),
                       ],
                     ),
                   );

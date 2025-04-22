@@ -176,16 +176,16 @@ class _RegscreenState extends State<Regscreen> {
                                         builder: (context) =>const LoginScreen(),
                                       ));
                                   snackbar(context, regProvider.errorMessage,
-                                      0xFF6BCB77);
+                                      0xFF6BCB77,Icons.check_circle_outline_outlined);
                                 } else {
-                                  snackbar(context, "Failed To Register check your network",
-                                      0xFFE63946);
+                                  snackbar(context, regProvider.errorMessage,
+                                      0xFFE63946,Icons.close_rounded);
                                 }
                               } else {
                                 snackbar(
                                     context,
                                     "Oops! All fields are required",
-                                    0xFFFF8E3C);
+                                    0xFFFF8E3C,Icons.close_rounded);
                               }
                             },
                           ),

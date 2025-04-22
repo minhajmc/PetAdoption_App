@@ -1,11 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:getwidget/getwidget.dart';
+import 'package:pet_adoption_app/models/profile_model/profile_model.dart';
+import 'package:pet_adoption_app/viewmodels/profile_provider/profileget_provider.dart';
+import 'package:pet_adoption_app/views/ui/profile/editprofile.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
+import 'package:provider/provider.dart';
 
 class CustomAppDrawer extends StatelessWidget {
-  const CustomAppDrawer({super.key});
+
+  final String?prefsEmail;
+  const CustomAppDrawer({super.key,required this.prefsEmail});
 
   @override
   Widget build(BuildContext context) {
@@ -32,28 +39,35 @@ class CustomAppDrawer extends StatelessWidget {
                     color: closeIconColor,
                   )),
               decoration: BoxDecoration(color: headerBackgroundColor),
-              child: GFListTile(
-                color: headerBackgroundColor,
-                margin: EdgeInsets.all(20),
-                hoverColor: Colors.black,
-                avatar: GFAvatar(
-                  backgroundColor: avatarBackgroundColor,
-                  backgroundImage: NetworkImage(
-                      "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"),
-                  size: GFSize.LARGE,
-                ),
-                padding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
-                title: TextWidget(
-                    words: "Jhone lock",
-                    color: titleTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17.spMin),
-                subTitle: TextWidget(
-                    words: "jhone@gmail.com",
-                    color: subtitleTextColor,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 13.spMin),
-              ),
+              child:
+              
+              
+               Consumer<ProfileGetProvider>(
+                  builder: (context, providerData, child) {
+                ProfileModel? profileModelData = providerData.profileModelData;
+                return GFListTile(
+                  color: headerBackgroundColor,
+                  margin: EdgeInsets.all(20),
+                  hoverColor: Colors.black,
+                  avatar: GFAvatar(
+                    backgroundColor: avatarBackgroundColor,
+                    backgroundImage: profileModelData?.imageUrl!=null?CachedNetworkImageProvider("${profileModelData?.imageUrl}"):null
+                    ,
+                    size: GFSize.LARGE,
+                  ),
+                  padding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
+                  title: TextWidget(
+                      words: "${profileModelData?.name}",
+                      color: titleTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17.spMin),
+                  subTitle: TextWidget(
+                      words: "$prefsEmail",
+                      color: subtitleTextColor,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 13.spMin),
+                );
+              }),
             ),
             // ListTile(
             //   leading: Icon(
@@ -74,8 +88,15 @@ class CustomAppDrawer extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
             ),
-            
+
             ListTile(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditProfile(),
+                    ));
+              },
               leading: Icon(Icons.person_outline, size: 30.w, color: iconColor),
               title: TextWidget(
                   words: "Profile",
@@ -155,13 +176,17 @@ class CustomAppDrawer extends StatelessWidget {
               color: Color(0xFFB3E5FC),
             ),
             ListTile(
-              leading: Icon(Icons.logout, size: 30.w, color: Color(0xFFEF5350),),
+              leading: Icon(
+                Icons.logout,
+                size: 30.w,
+                color: Color(0xFFEF5350),
+              ),
               title: TextWidget(
-                  words: "Logout",
-                  color: Color(0xFFD32F2F),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  ),
+                words: "Logout",
+                color: Color(0xFFD32F2F),
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
           ],
         ));

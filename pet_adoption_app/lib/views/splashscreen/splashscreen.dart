@@ -1,8 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pet_adoption_app/services/api_services.dart';
 import 'package:pet_adoption_app/views/onboardingscreens/landingscreen.dart';
+import 'package:pet_adoption_app/views/ui/root_scaffold/rootscaffold.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -15,22 +20,47 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
     super.initState();
+    // Initialize the API services adding barear token to apiservices  --cheking?..
+    initBearerToken();
+    // Navigate to the LandingScreen after a delay
     Future.delayed(Duration(seconds: 5), () {
-      Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-               const Landingscreen(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              return FadeTransition(
-                opacity: animation,
-                child: child,
-              );
-            },
-            transitionDuration: Duration(milliseconds: 1000)),
-      );
+      navigateToLandingScreen();
     });
+  }
+
+  void navigateToLandingScreen() async{
+     final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("bearerToken");
+
+    if(token!=null){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RootScaffold(),));
+    }else{
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const Landingscreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 1000),
+      ),
+    );
+  }
+  }
+
+  Future<void> initBearerToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString("bearerToken");
+
+    if (token != null) {
+      log("Token found:$token ::sharedprefs");
+
+      await ApiServices.barearToken(token);
+    }
   }
 
   @override
@@ -39,14 +69,14 @@ class _SplashscreenState extends State<Splashscreen> {
       body: Container(
         height: 1.sh,
         width: 1.sw,
-        decoration:const BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-      Color(0xFFFDEBD0), // creamy peach
-      Color(0xFFFADBD8), // pastel coral
-      Color(0xFFD6EAF8), // soft baby blue
+            Color(0xFFFDEBD0), // creamy peach
+            Color(0xFFFADBD8), // pastel coral
+            Color(0xFFD6EAF8), // soft baby blue
           ],
         )),
         child: Center(

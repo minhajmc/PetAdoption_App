@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class BearerTokenService {
-    Future<void> saveToken(String?token) async {
+    Future<void> saveToken(String? token) async {
     if (token != null && token.isNotEmpty) {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString("bearerToken", token); 
@@ -14,10 +14,10 @@ class BearerTokenService {
     }
   }
 
-  Future<String?> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString("bearerToken");
-    // log("Fetched token:$token ::sharedprefs");
-    return token;
-  }
+  // Future<String?> getToken() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final token = prefs.getString("bearerToken");
+  //   // log("Fetched token:$token ::sharedprefs");
+  //   return token;
+  // }
 }
