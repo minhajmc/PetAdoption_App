@@ -6,7 +6,7 @@ import 'package:pet_adoption_app/viewmodels/auth_provider/register_provider.dart
 import 'package:pet_adoption_app/viewmodels/profile_provider/profileget_provider.dart';
 import 'package:pet_adoption_app/viewmodels/profile_provider/profileupdate_provider.dart';
 import 'package:pet_adoption_app/views/splashscreen/splashscreen.dart';
-import 'package:pet_adoption_app/views/ui/profile/editprofile.dart';
+import 'package:pet_adoption_app/views/ui/pet_details/pet_details_screen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -36,7 +36,7 @@ class PetAdoptionApp extends StatelessWidget {
         child: MaterialApp(
         title: "Pet Adoption App",
         debugShowCheckedModeBanner: false,
-        home:Splashscreen(),
+        home:PetDetailsScreen(),
       ),);
       },
     );

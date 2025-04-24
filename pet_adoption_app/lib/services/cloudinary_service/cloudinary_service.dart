@@ -29,5 +29,6 @@ class CloudinaryService {
       log("error ocuured when uploading images to cloudinary $e");
       return null;
     }
+    return null;
   }
 }

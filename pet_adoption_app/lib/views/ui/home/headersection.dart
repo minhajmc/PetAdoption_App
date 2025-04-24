@@ -1,12 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:getwidget/colors/gf_color.dart';
-import 'package:getwidget/components/avatar/gf_avatar.dart';
-import 'package:getwidget/components/button/gf_icon_button.dart';
-import 'package:getwidget/components/list_tile/gf_list_tile.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:getwidget/types/gf_button_type.dart';
 import 'package:pet_adoption_app/models/profile_model/profile_model.dart';
 import 'package:pet_adoption_app/viewmodels/profile_provider/profileget_provider.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';

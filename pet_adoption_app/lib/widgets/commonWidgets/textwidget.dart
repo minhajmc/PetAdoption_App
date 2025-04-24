@@ -33,6 +33,7 @@ class TextWidget extends StatelessWidget {
         fontFamily:fontFamily ,
        fontWeight:fontWeight,
        fontSize: fontSize.sp ,
+      
        
       ),
       
