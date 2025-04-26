@@ -13,7 +13,7 @@ class RegisterProvider extends ChangeNotifier {
 
   String? get errorMessage => _errorMessage;
 
-  Future<void> registerUser(String email, String name, String password) async {
+  Future<void> registerUser(String email, String name, String password) async{
     isloading = true;
     notifyListeners();
     try {

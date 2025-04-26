@@ -11,12 +11,13 @@ class ServiceGfIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFIconButton(
         iconSize:0.04.sw,
-        boxShadow: BoxShadow(
-            offset: Offset(
-              5,
-              5,
-            ),
-            color: const Color.fromARGB(204, 0, 0, 0)),
+      boxShadow: BoxShadow(
+  color: Colors.black.withValues(alpha: 0.3),
+  offset: Offset(4, 4),
+  blurRadius: 2,
+  spreadRadius: 0,
+),
+
         color:  Color(backgroundColor),
         icon: icon,
         onPressed: () {});

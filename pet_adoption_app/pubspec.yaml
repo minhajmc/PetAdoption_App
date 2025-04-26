@@ -80,6 +80,7 @@ flutter:
    - assets/splashscreen/walking_with_dog.json
    - assets/mainuislideimg/carouselimg/
    - assets/mainuislideimg/categoriesimg/
+   - assets/mainuislideimg/petdetails/
    
   #   - images/a_dot_ham.jpeg
 

@@ -27,6 +27,8 @@ class TextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       words,
+      //newly added
+      softWrap: true,
       textAlign: textAlign,
       style: TextStyle(
         color: color,

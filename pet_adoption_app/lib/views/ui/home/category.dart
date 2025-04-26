@@ -29,60 +29,53 @@ class _CategoryofPetState extends State<CategoryofPet> {
     return Padding(
       padding:  EdgeInsets.only(right: 6.w, left: 12.w),
       child: SizedBox(
-        height: 50.h,
-        width: double.infinity,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          // padding: EdgeInsets.symmetric(vertical: 20.w),
-          itemCount: categoryofPets.length,
-          itemBuilder: (context, index) {
-            final currentIndex=index==onIndex;
-            return Padding(
-              padding:  EdgeInsets.only(left: 15.w),
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    onIndex=index;
-                  });
-                  log(categoryofPets[index]['petType']);
-                  
-                },
-                child: Container(
-                  width: 120.w,
-                  decoration: BoxDecoration(
-                    color: currentIndex?Color(0xFF827397): Color.fromARGB(171, 220, 219, 219),
-                    borderRadius: BorderRadius.all(Radius.circular(20.r)),
-                  ),
-                  padding: EdgeInsets.only(
-                    left: 20.w,
-                  ),
-                  child: Row(
-                    children: [
-                      // Image.asset("assets/mainuislideimg/categoriesimg/cat.png"),
-                      //  Image.asset("assets/mainuislideimg/categoriesimg/catnew.png"),
-                      GFAvatar(
-                        backgroundImage: AssetImage(
-                            categoryofPets[index]["image"]),
-                        size: 20.w,
-                        backgroundColor:
-                        categoryofPets[index]["color"],
-                      ),
-                      SizedBox(
-                        width: 7.w,
-                      ),
-                      TextWidget(
-                          words: categoryofPets[index]["petType"],
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17.spMin)
-                    ],
-                  ),
+  height: 50.h,
+  child: ListView.builder(
+    scrollDirection: Axis.horizontal,
+    itemCount: categoryofPets.length,
+    itemBuilder: (context, index) {
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: ChoiceChip(
+          label: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GFAvatar(
+                backgroundImage: AssetImage(categoryofPets[index]["image"]),
+                size: 15.w,
+                backgroundColor: categoryofPets[index]["color"],
+              ),
+              SizedBox(width: 5.w),
+              Text(
+                categoryofPets[index]["petType"],
+                style: TextStyle(
+                  color: onIndex == index ? Colors.white : Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14.sp,
                 ),
               ),
-            );
+            ],
+          ),
+          selected: onIndex == index,
+          onSelected: (selected) {
+            setState(() {
+              onIndex = index;
+            });
+            log(categoryofPets[index]['petType']);
           },
+          selectedColor: Color(0xFF827397),
+          backgroundColor: Color.fromARGB(171, 220, 219, 219),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          elevation: 4,
+          
         ),
-      ),
+      );
+    },
+  ),
+)
+
     );
   }
 }
