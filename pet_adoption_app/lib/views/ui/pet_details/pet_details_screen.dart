@@ -8,13 +8,88 @@ import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 import 'package:pet_adoption_app/widgets/pet_details/info_tags.dart';
 import 'package:pet_adoption_app/widgets/pet_details/servicegficonbutton.dart';
 import 'package:pet_adoption_app/widgets/pet_details/statue_info.dart';
+import 'package:slide_to_act/slide_to_act.dart';
 
 class PetDetailsScreen extends StatelessWidget {
   const PetDetailsScreen({super.key});
 
+//   Color favColor = isFavorited ? Color(0xFFE91E63) : Color(0xFFB0BEC5); // Pink for favorited, Blue-grey for not
+// Color favIconColor = isFavorited ? Colors.white : Colors.grey[800];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // persistentFooterButtons: [
+      //   SizedBox(
+      //     width: double.infinity,
+      //     child: Row(
+      //       children: [
+      //         SizedBox(
+      //           width: 20.w,
+      //         ),
+      //         GFIconButton(
+      //             color: Color(0xFFB0BEC5),
+      //             icon: Icon(
+      //               Icons.favorite,
+      //               color: Colors.grey[40],
+      //             ),
+      //             onPressed: () {},
+      //             iconSize: 40.w,
+      //             shape: GFIconButtonShape.circle),
+      //         SizedBox(
+      //           width: 20.w,
+      //         ),
+      //         Expanded(
+      //           child: SlideAction(
+      //             height: 60.h,
+      //             onSubmit: () {
+      //               print("clicked");
+      //             },
+      //             submittedIcon: Icon(Icons.connecting_airports),
+      //             outerColor: Color.fromARGB(164, 30, 113, 185),
+      //             innerColor: Colors.white,
+      //             sliderButtonIconSize: 20.w,
+      //           ),
+      //         )
+      //       ],
+      //     ),
+      //   )
+      // ],
+
+      bottomNavigationBar: BottomAppBar(color: GFColors.TRANSPARENT,
+        child: Row(
+          children: [
+            SizedBox(
+              width: 20.w,
+            ),
+            GFIconButton(
+                color: Color(0xFFB0BEC5),
+                icon: Icon(
+                  Icons.favorite,
+                  color: Colors.grey[40],
+                ),
+                onPressed: () {},
+                iconSize: 40.w,
+                shape: GFIconButtonShape.circle),
+            SizedBox(
+              width: 20.w,
+            ),
+            Expanded(
+              child: SlideAction(
+                height: 60.h,
+                onSubmit: () {
+                  print("clicked");
+                  return null;
+                },
+                submittedIcon: Icon(Icons.connecting_airports),
+                outerColor: Color.fromARGB(164, 30, 113, 185),
+                innerColor: Colors.white,
+                sliderButtonIconSize: 15.w,
+              ),
+            )
+          ],
+        ),
+      ),
       backgroundColor: const Color(0xFFF5F0E6),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -121,9 +196,7 @@ class PetDetailsScreen extends StatelessWidget {
                     value: "Male",
                     backgroundColor: 0xFFFBEAEA),
                 const InfoTags(
-                    label: "Age",
-                    value: "Adult",
-                    backgroundColor: 0xFFE8EEFD),
+                    label: "Age", value: "Adult", backgroundColor: 0xFFE8EEFD),
                 const InfoTags(
                     label: "Size",
                     value: "Medium",
@@ -235,9 +308,9 @@ class PetDetailsScreen extends StatelessWidget {
                 StatueInfo(label: "FirstTime Breeder", iswhatTrFa: false),
                 StatueInfo(label: " Vaccinated           ", iswhatTrFa: false),
                 StatueInfo(label: "Friendly with Pets", iswhatTrFa: true),
-                StatueInfo(label: "Trained                   ", iswhatTrFa: false),
-                StatueInfo(label: "Good with Kids     " , iswhatTrFa: true),
-                
+                StatueInfo(
+                    label: "Trained                   ", iswhatTrFa: false),
+                StatueInfo(label: "Good with Kids     ", iswhatTrFa: true),
 
                 // if (pet.specialNeeds.isNotEmpty)
                 StatueInfo(label: "HasSpecial Needs", iswhatTrFa: false)

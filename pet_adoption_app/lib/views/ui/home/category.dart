@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 
 class CategoryofPet extends StatefulWidget {
   const CategoryofPet({super.key});

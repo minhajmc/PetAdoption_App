@@ -61,7 +61,6 @@ class _RegscreenState extends State<Regscreen> {
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraints) {
           return SingleChildScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Padding(
               padding: EdgeInsets.only(top: 10.r),
               child: Form(
@@ -159,7 +158,7 @@ class _RegscreenState extends State<Regscreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>const LoadingAnimation(
-                                            text: "Creating your account....",
+                                            text: "Creating your account..",
                                             path:
                                                 "assets/registerImages/animation/Animation - 1744131570858.json")));
                                 await regProvider.registerUser(

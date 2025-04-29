@@ -6,11 +6,9 @@ class ModelRegister {
     ModelRegister({required this.email,required this.name,required this.password});
 
     Map<String,dynamic>toJson()=>{
-
       "email":email,
       "name":name,
       "password":password
-
     };
 
 }
