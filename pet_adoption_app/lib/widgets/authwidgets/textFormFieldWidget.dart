@@ -5,11 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Textformfieldwidget extends StatelessWidget {
   final TextEditingController controller;
-  final FocusNode focusNode;
+  //i changed this if there is any problem with focusnode remove the null 
+  final FocusNode? focusNode;
   final FocusNode? whereToFocus;
   final TextInputType keyboardType;
   final String hintText;
-  final IconData icons;
+
+  // changed this also null
+  final IconData ?icons;
   final int? maxLength;
   final String? Function(String?)? validator;
   final bool isPassword;
@@ -19,10 +22,10 @@ class Textformfieldwidget extends StatelessWidget {
       {super.key,
       required this.controller,
       required this.keyboardType,
-      required this.focusNode,
+       this.focusNode,
       this.whereToFocus,
       required this.hintText,
-      required this.icons,
+       this.icons,
       this.maxLength,
       this.validator,
       required this.isPassword,

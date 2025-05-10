@@ -1,0 +1,65 @@
+List<String> breedList = [
+  // Dogs
+  "Chihuahua",
+  "Pomeranian",
+  "French Bulldog",
+  "Pug",
+  "Dachshund (Miniature)",
+  "Shih Tzu",
+  "Beagle",
+  "Yorkshire Terrier (Yorkie)",
+  "Cocker Spaniel",
+  "Golden Retriever",
+  "Indian Spitz",
+  "Labrador Retriever",
+  "German Shepherd",
+  "Doberman Pinscher",
+  "Rottweiler",
+  "Great Dane",
+  "Boxer",
+  "Indian Pariah Dog (Desi Dog)",
+  "Siberian Husky",
+  "Saint Bernard",
+  "Dalmatian",
+  "Lhasa Apso",
+
+  // Cats
+  "Persian",
+  "Siamese",
+  "British Shorthair",
+  "Scottish Fold",
+  "Maine Coon",
+  "Ragdoll",
+  "Sphynx (Hairless Cat)",
+  "Bengal",
+  "Russian Blue",
+  "Exotic Shorthair",
+  "Bombay Cat",
+  "Indian Billi (Desi Cat)",
+  "Himalayan",
+
+  // Rabbits
+  "Netherland Dwarf",
+  "Holland Lop",
+  "Mini Rex",
+  "Lionhead",
+  "Flemish Giant",
+  "Dutch Rabbit",
+  "English Angora",
+  "Mini Lop",
+
+  // Hamsters
+  "Syrian Hamster (Golden Hamster)",
+  "Roborovski Dwarf Hamster",
+  "Campbell's Dwarf Hamster",
+  "Winter White Dwarf Hamster",
+  "Chinese Hamster",
+
+  // Turtles
+  "Red-Eared Slider",
+  "Painted Turtle",
+  "Musk Turtle",
+  "Reeve's Turtle",
+  "African Sideneck Turtle",
+  "Russian Tortoise"
+];

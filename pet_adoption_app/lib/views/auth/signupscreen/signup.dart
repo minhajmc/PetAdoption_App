@@ -10,7 +10,7 @@ import 'package:pet_adoption_app/widgets/authwidgets/elevatedButtonWidget.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/pawImagewithText.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/snackbar.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/textbutton.dart';
-import 'package:pet_adoption_app/widgets/commonWidgets/textFormFieldWidget.dart';
+import 'package:pet_adoption_app/widgets/authwidgets/textFormFieldWidget.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 import 'package:provider/provider.dart';
 
