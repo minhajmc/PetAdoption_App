@@ -56,7 +56,8 @@ class PetDetailsScreen extends StatelessWidget {
       //   )
       // ],
 
-      bottomNavigationBar: BottomAppBar(color: GFColors.TRANSPARENT,
+      bottomNavigationBar: BottomAppBar(
+        color: GFColors.TRANSPARENT,
         child: Row(
           children: [
             SizedBox(

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_adoption_app/models/petdetails/petprofile.dart';
 import 'package:pet_adoption_app/views/ui/add_pet_form/add_pet_footersection.dart';
 import 'package:pet_adoption_app/views/ui/add_pet_form/pageview/add_pet_page1.dart';
+import 'package:pet_adoption_app/views/ui/add_pet_form/pageview/add_pet_page2.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/elevatedButtonWidget.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -62,49 +63,36 @@ class _AddPetScreenState extends State<AddPetScreen> {
                 physics: NeverScrollableScrollPhysics(),
                 controller: _pageController,
                 children: [
+                  //page1
                   AddPetPage1(
                     onTap: (petprofiledetails) {
                       petProfile = petprofiledetails;
 
+                      _pageController.nextPage(curve: Curves.easeInOut,duration: Duration(milliseconds: 300));
                       log(petProfile!.petName.toString());
+                      log(petProfile?.description ?? "default");
                     },
                     petProfile: petProfile,
                   ),
+                  //page 1 End......
+
+                  //Page2
+                  AddPetPage2(),
+               
+
+
+                  //page2 End......
                 ],
               ),
             ),
 
-            SizedBox(
-              height: 20.h,
-            )
+           
             // AddPetFooterSection(pageController: _pageController),
           ],
         ),
       ),
     );
   }
-
-  // Widget _buildPage(String text) {
-  //   return Container(
-  //     decoration: BoxDecoration(
-  //       borderRadius: BorderRadius.only(
-  //         topLeft: Radius.circular(30),
-  //         topRight: Radius.circular(30),
-  //       ),
-  //       color: Color(0xFFF9F7F1), // very light version of scaffold color
-  //     ),
-  //     child: Center(
-  //       child: Text(
-  //         text,
-  //         style: TextStyle(
-  //           fontSize: 32.spMin,
-  //           color: Color(0xFF212121), // dark readable text
-  //           fontWeight: FontWeight.w600,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   Widget indicator() {
     return Align(

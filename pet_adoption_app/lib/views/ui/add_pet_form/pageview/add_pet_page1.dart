@@ -39,17 +39,19 @@ class AddPetPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Container(
+          height: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+            color: Color(0xFFF9F7F1), // very light version of scaffold color
           ),
-          color: Color(0xFFF9F7F1), // very light version of scaffold color
-        ),
-        child: Align(
-          alignment: Alignment.center,
           child: Padding(
             padding: EdgeInsets.only(left: 30.w, right: 30.w),
             child: SingleChildScrollView(
@@ -138,7 +140,7 @@ class AddPetPage1 extends StatelessWidget {
                       borderRadius: 12.r,
                       tap: () {
                         if(_formKey.currentState!.validate()){
-
+          
                          petProfile?.petName=_petNameController.text;
                          petProfile?.type=_typeController.text;
                          petProfile?.breed=_breedTypeController.text;
@@ -146,7 +148,7 @@ class AddPetPage1 extends StatelessWidget {
                          petProfile?.size=_sizeController.text;
                          petProfile?.age=int.parse(_ageController.text);
                         //  petProfile.
-
+          
                         if(petProfile!=null){
                           onTap(petProfile!);
                           
@@ -163,7 +165,7 @@ class AddPetPage1 extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }
