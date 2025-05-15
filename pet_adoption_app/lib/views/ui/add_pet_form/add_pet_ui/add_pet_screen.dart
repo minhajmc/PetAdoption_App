@@ -3,9 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_adoption_app/models/petdetails/petprofile.dart';
-import 'package:pet_adoption_app/views/ui/add_pet_form/add_pet_footersection.dart';
+import 'package:pet_adoption_app/views/ui/add_pet_form/add_pet_ui/add_pet_footersection.dart';
 import 'package:pet_adoption_app/views/ui/add_pet_form/pageview/add_pet_page1.dart';
 import 'package:pet_adoption_app/views/ui/add_pet_form/pageview/add_pet_page2.dart';
+import 'package:pet_adoption_app/views/ui/add_pet_form/pageview/add_pet_page3.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/elevatedButtonWidget.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -18,7 +19,7 @@ class AddPetScreen extends StatefulWidget {
 }
 
 class _AddPetScreenState extends State<AddPetScreen> {
-  PetProfile? petProfile = PetProfile();
+  PetProfileModel? petProfile = PetProfileModel();
   final _pageController = PageController();
 
   @override
@@ -57,37 +58,46 @@ class _AddPetScreenState extends State<AddPetScreen> {
               ],
             ),
             indicator(),
-
             Expanded(
               child: PageView(
                 physics: NeverScrollableScrollPhysics(),
                 controller: _pageController,
                 children: [
                   //page1
-                  AddPetPage1(
-                    onTap: (petprofiledetails) {
-                      petProfile = petprofiledetails;
+                  // AddPetPage1(
+                  //   onTap: (petprofiledetails) {
+                  //     petProfile = petprofiledetails;
 
-                      _pageController.nextPage(curve: Curves.easeInOut,duration: Duration(milliseconds: 300));
-                      log(petProfile!.petName.toString());
-                      log(petProfile?.description ?? "default");
-                    },
-                    petProfile: petProfile,
-                  ),
+                  //     _pageController.nextPage(
+                  //         curve: Curves.easeInOut,
+                  //         duration: Duration(milliseconds: 300));
+                  //     // log(petProfile!.petName.toString());
+                  //     // log(petProfile?.description ?? "default");
+                  //   },
+                  //   petProfile: petProfile,
+                  // ),
                   //page 1 End......
 
                   //Page2
-                  AddPetPage2(),
-               
+                  // AddPetPage2(
+                  //   petModelDataEnter: petProfile,
+                  //   onChange: (petprofileData) {
+                  //     petProfile = petprofileData;
 
+                  //     log(petProfile!.petName.toString());
+                  //     log(petProfile?.description ?? "no");
+                  //     log(petProfile!.vaccinationStatus.toString());
+                  //   },
+                  // ),
 
                   //page2 End......
+
+                  //page 3
+                  AddPetPage3() 
+                  //end
                 ],
               ),
             ),
-
-           
-            // AddPetFooterSection(pageController: _pageController),
           ],
         ),
       ),

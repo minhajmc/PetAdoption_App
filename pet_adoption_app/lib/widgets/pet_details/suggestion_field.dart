@@ -25,7 +25,7 @@ class SuggestionField extends StatelessWidget {
       controller: allController,
       focusNode: focusNode,
       builder: (context, controller, focusNode) {
-        return DetailsFormField(
+        return DetailsFormField(maxLine: 1,
           hintText: hintText,
           inputType: TextInputType.text,
           controller: controller,

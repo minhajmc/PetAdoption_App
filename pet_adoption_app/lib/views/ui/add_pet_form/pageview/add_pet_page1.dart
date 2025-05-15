@@ -13,8 +13,8 @@ import 'package:pet_adoption_app/widgets/pet_details/detailsformfield.dart';
 import 'package:pet_adoption_app/widgets/pet_details/suggestion_field.dart';
 
 class AddPetPage1 extends StatelessWidget {
- final PetProfile? petProfile;
-  final Function(PetProfile) onTap;
+ final PetProfileModel? petProfile;
+  final Function(PetProfileModel) onTap;
   final _formKey = GlobalKey<FormState>();
 
 
@@ -62,7 +62,7 @@ class AddPetPage1 extends StatelessWidget {
                     SizedBox(
                       height: 40.h,
                     ),
-                    DetailsFormField(
+                    DetailsFormField(maxLine: 1,
                       whereToFocus: _typeFocusNode,
                       focusNode: _petNameFocusNode,
                       hintText: "Name",
@@ -120,7 +120,7 @@ class AddPetPage1 extends StatelessWidget {
                       height: 25.h,
                     ),
                     SizedBox(
-                        child: DetailsFormField(
+                        child: DetailsFormField(maxLine: 1,
                             focusNode: _ageFocusNode,
                             whereToFocus: null,
                             hintText: "Age",

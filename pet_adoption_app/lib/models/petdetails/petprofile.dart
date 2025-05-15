@@ -1,4 +1,4 @@
-class PetProfile {
+class PetProfileModel{
   String? petName;
   String? type;
   String? breed;
@@ -20,7 +20,7 @@ class PetProfile {
   bool? availableForAdoption;
   ContactDetails? contactDetails;
 
-  PetProfile({
+  PetProfileModel({
     this.petName,
     this.type,
     this.breed,
@@ -45,8 +45,8 @@ class PetProfile {
 
 
 
-  factory PetProfile.fromJson(Map<String, dynamic> json) {
-    return PetProfile(
+  factory PetProfileModel.fromJson(Map<String, dynamic> json) {
+    return PetProfileModel(
       petName: json['petName'],
       type: json['type'],
       breed: json['breed'],

@@ -6,7 +6,7 @@ import 'package:pet_adoption_app/viewmodels/auth_provider/register_provider.dart
 import 'package:pet_adoption_app/viewmodels/profile_provider/profileget_provider.dart';
 import 'package:pet_adoption_app/viewmodels/profile_provider/profileupdate_provider.dart';
 import 'package:pet_adoption_app/views/splashscreen/splashscreen.dart';
-import 'package:pet_adoption_app/views/ui/add_pet_form/add_pet_screen.dart';
+import 'package:pet_adoption_app/views/ui/add_pet_form/add_pet_ui/add_pet_screen.dart';
 import 'package:pet_adoption_app/views/ui/pet_details/pet_details_screen.dart';
 
 import 'package:provider/provider.dart';

@@ -5,19 +5,21 @@ class DetailsFormField extends StatelessWidget {
   final String hintText;
   final TextInputType inputType;
   final TextEditingController controller;
-  FocusNode focusNode;
+  FocusNode ?focusNode;
   FocusNode ?whereToFocus;
+ final int maxLine;
   DetailsFormField(
       {super.key,
       required this.hintText,
       required this.inputType,
       required this.controller,
-      required this.whereToFocus,
-      required this.focusNode});
+      required this.maxLine,
+       this.whereToFocus,
+       this.focusNode});
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextFormField(maxLines:maxLine ,
       style: TextStyle(fontSize: 15.spMin),
       decoration: InputDecoration(
         border: OutlineInputBorder(
