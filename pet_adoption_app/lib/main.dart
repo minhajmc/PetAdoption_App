@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_adoption_app/services/api_services.dart';
 import 'package:pet_adoption_app/viewmodels/auth_provider/login_provider.dart';
 import 'package:pet_adoption_app/viewmodels/auth_provider/register_provider.dart';
+import 'package:pet_adoption_app/viewmodels/imagepicker_provider/image_picker_provider.dart';
 import 'package:pet_adoption_app/viewmodels/profile_provider/profileget_provider.dart';
 import 'package:pet_adoption_app/viewmodels/profile_provider/profileupdate_provider.dart';
 import 'package:pet_adoption_app/views/splashscreen/splashscreen.dart';
@@ -33,6 +34,7 @@ class PetAdoptionApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => RegisterProvider(),),
           ChangeNotifierProvider(create: (context) => ProfileUpdateProvider(),),
           ChangeNotifierProvider(create: (context) => ProfileGetProvider(),),
+          ChangeNotifierProvider(create: (context) => ImagePickerProvider(),)
         ],
         child: MaterialApp(
         title: "Pet Adoption App",
