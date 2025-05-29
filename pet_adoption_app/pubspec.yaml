@@ -49,6 +49,8 @@ dependencies:
   slide_to_act: ^2.0.2
   smooth_page_indicator: ^1.2.1
   flutter_typeahead: ^5.2.0
+  geolocator: ^14.0.0
+  geocoding: ^3.0.0
 
 
  
@@ -84,6 +86,7 @@ flutter:
    - assets/mainuislideimg/carouselimg/
    - assets/mainuislideimg/categoriesimg/
    - assets/mainuislideimg/petdetails/
+   - assets/reausable_json/
    
   #   - images/a_dot_ham.jpeg
 

@@ -9,6 +9,7 @@ import 'package:pet_adoption_app/views/ui/add_pet_form/listofpets/gender_list.da
 import 'package:pet_adoption_app/views/ui/add_pet_form/listofpets/size_list.dart';
 import 'package:pet_adoption_app/views/ui/add_pet_form/listofpets/type_list.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/elevatedButtonWidget.dart';
+import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 import 'package:pet_adoption_app/widgets/pet_details/detailsformfield.dart';
 import 'package:pet_adoption_app/widgets/pet_details/suggestion_field.dart';
 
@@ -60,7 +61,12 @@ class AddPetPage1 extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 40.h,
+                      height: 20.h,
+                    ),
+
+                    TextWidget(words: "Pet Details", color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18.spMin),
+                    SizedBox(
+                      height: 20.h,
                     ),
                     DetailsFormField(maxLine: 1,
                       whereToFocus: _typeFocusNode,

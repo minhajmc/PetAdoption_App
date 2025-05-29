@@ -5,21 +5,22 @@ class DetailsFormField extends StatelessWidget {
   final String hintText;
   final TextInputType inputType;
   final TextEditingController controller;
-  FocusNode ?focusNode;
-  FocusNode ?whereToFocus;
- final int maxLine;
+  FocusNode? focusNode;
+  FocusNode? whereToFocus;
+  final int maxLine;
   DetailsFormField(
       {super.key,
       required this.hintText,
       required this.inputType,
       required this.controller,
       required this.maxLine,
-       this.whereToFocus,
-       this.focusNode});
+      this.whereToFocus,
+      this.focusNode});
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(maxLines:maxLine ,
+    return TextFormField(
+      maxLines: maxLine,
       style: TextStyle(fontSize: 15.spMin),
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -32,7 +33,11 @@ class DetailsFormField extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
-          return "Must Enter $hintText";
+          return "Must $hintText";
+        } else if (hintText == "Enter Your Email") {
+          if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+            return "Please enter a valid email";
+          }
         } else {
           return null;
         }

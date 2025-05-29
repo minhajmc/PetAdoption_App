@@ -10,7 +10,7 @@ class ElevatedButtonWidget extends StatelessWidget {
   final double fontSize;
   final double borderRadius;
   final VoidCallback tap;
- final int borderColor;
+  final int borderColor;
   const ElevatedButtonWidget(
       {super.key,
       required this.text,
@@ -22,21 +22,27 @@ class ElevatedButtonWidget extends StatelessWidget {
       required this.textColor,
       required this.borderRadius,
       required this.tap,
-     required this.borderColor});
+      required this.borderColor});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: tap,
-
       style: ButtonStyle(
-        shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius),side: BorderSide(color: Color(borderColor),width:2 ))),
-          minimumSize: WidgetStatePropertyAll(Size(width,height)),
-          elevation: WidgetStatePropertyAll(elevation),
-          backgroundColor: WidgetStatePropertyAll(Color(backgroundColor)),
-         ),
+        shape: WidgetStateProperty.all(RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            side: BorderSide(color: Color(borderColor), width: 2))),
+        minimumSize: WidgetStatePropertyAll(Size(width, height)),
+        elevation: WidgetStatePropertyAll(elevation),
+        backgroundColor: WidgetStatePropertyAll(Color(backgroundColor)),
+      ),
+      
       child: Text(
-        text,style: TextStyle(color:textColor,fontSize: fontSize.sp,),
+        text,
+        style: TextStyle(
+          color: textColor,
+          fontSize: fontSize.sp,fontWeight: FontWeight.bold
+        ),
       ),
     );
   }

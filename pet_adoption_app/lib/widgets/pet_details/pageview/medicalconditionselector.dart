@@ -30,17 +30,18 @@ class _MedicalConditionSelectorState extends State<MedicalConditionSelector> {
               });
             },
             side: BorderSide(
-              width: 1,
+              width: 1.w
+              ,
             ),
             shape: ContinuousRectangleBorder(
-                borderRadius: BorderRadius.circular(7)),
+                borderRadius: BorderRadius.circular(7.r)),
           ),
         ),
         TextWidget(
             words: widget.text,
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 18.spMin),
+            fontSize: 15.spMin),
       ],
     );
   }

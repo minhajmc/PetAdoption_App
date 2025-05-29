@@ -3,28 +3,48 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pet_adoption_app/viewmodels/imagepicker_provider/image_picker_provider.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:lottie/lottie.dart';
+import 'package:pet_adoption_app/models/petdetails/petprofile.dart';
+import 'package:pet_adoption_app/viewmodels/pet_details_provider/pageview/image_picker_provider.dart';
+import 'package:pet_adoption_app/viewmodels/pet_details_provider/pageview/location_provider.dart';
+import 'package:pet_adoption_app/widgets/authwidgets/elevatedButtonWidget.dart';
+import 'package:pet_adoption_app/widgets/authwidgets/snackbar.dart'
+    show snackbar;
+import 'package:pet_adoption_app/widgets/commonWidgets/loading_animation_button.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 import 'package:provider/provider.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
 class AddPetPage3 extends StatelessWidget {
-  AddPetPage3({super.key});
+  final PetProfileModel? petProfileModel;
+  final Function(PetProfileModel) onChange;
+
+  AddPetPage3(
+      {super.key, required this.petProfileModel, required this.onChange});
   List<File?> imagesofList = [];
+
+  // void _onNextPressed() {
+
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final imageprovider =
+        Provider.of<ImagePickerProvider>(listen: false, context);
+    final locationProvider =
+        Provider.of<LocationProvider>(listen: true, context);
     return Container(
       height: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
+          topLeft: Radius.circular(30.r),
+          topRight: Radius.circular(30.r),
         ),
         color: Color(0xFFF9F7F1), // very light version of scaffold color
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+        padding:  EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,29 +58,50 @@ class AddPetPage3 extends StatelessWidget {
                 height: 20.h,
               ),
 
-              SlideAction(
-                height: 60.h,
-                sliderButtonYOffset: -8.w,
-                sliderButtonIconSize: 40.w,
-                onSubmit: () {
-                  log("hek");
-                  return;
-                },
-                borderRadius: Checkbox.width,
-                outerColor: const Color.fromARGB(236, 237, 97, 84),
-                innerColor: const Color.fromARGB(229, 255, 255, 255),
-                sliderButtonIcon: Icon(
-                  Icons.location_on,
-                  size: 38.w,
-                  color: Color(0xFFFF6F61),
-                ),
-                sliderRotate: false,
-                child: TextWidget(
-                    words: "Pick Location",
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.spMin),
-              ),
+              locationProvider.isLocationPicked == true
+                  ? TextField(
+                      readOnly: true,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintStyle: TextStyle(
+                              color: Colors.deepPurple, fontSize: 18.spMin),
+                          hintText:
+                              " Place : ${locationProvider.locationPlcae!.locality} ,${locationProvider.locationPlcae!.administrativeArea}"),
+                    )
+                  : SlideAction(
+                      height: 60.h,
+                      sliderButtonYOffset: -8.w,
+                      sliderButtonIconSize: 40.w,
+                      onSubmit: () async {
+                        await locationProvider.getCurrentLocation();
+                        //  snackbar(context, locationProvider.message,123, Icons.abc);
+                        GFToast.showToast(
+                          locationProvider.message, context,
+                          toastPosition: GFToastPosition.BOTTOM,
+                          textStyle:
+                              TextStyle(fontSize: 16.spMin, color: GFColors.DARK),
+                          backgroundColor: GFColors.LIGHT,
+                          // trailing: Icon(
+                          //   Icons.notifications,
+                          //   color: GFColors.SUCCESS,
+                          // )
+                        );
+                      },
+                      borderRadius: Checkbox.width,
+                      outerColor: const Color.fromARGB(236, 237, 97, 84),
+                      innerColor: const Color.fromARGB(229, 255, 255, 255),
+                      sliderButtonIcon: Icon(
+                        Icons.location_on,
+                        size: 38.w,
+                        color: Color(0xFFFF6F61),
+                      ),
+                      sliderRotate: false,
+                      child: TextWidget(
+                          words: "Pick Location",
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.spMin),
+                    ),
 
               SizedBox(
                 height: 40.h,
@@ -129,17 +170,81 @@ class AddPetPage3 extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     child: value.fileImage.isEmpty
                         ? null
-                        : Image.file(
-                            value.fileImage[index],
-                            fit: BoxFit.cover,
+                        : InkWell(
+                            onLongPress: () {
+                              value.deleteImage(index);
+                              imagesofList.removeAt(index);
+                              log(value.fileImage.length.toString());
+                              log("fileimages ${imagesofList.length.toString()}");
+                            },
+                            onTap: () {
+                              log(index.toString());
+                            },
+                            child: Image.file(
+                              value.fileImage[index],
+                              fit: BoxFit.cover,
+                            ),
                           ),
                   ),
                 );
               }),
+              SizedBox(
+                height: 20.h,
+              ),
 
-              ElevatedButton(onPressed: (){
-                log(imagesofList.toString());
-              }, child: Text("click"))
+              Consumer<ImagePickerProvider>(
+                builder: (context, value, child) {
+                  return value.fileImage.isNotEmpty
+                      ? Center(
+                          child: Text("Long Press To Delete Image"),
+                        )
+                      : SizedBox();
+                },
+              ),
+
+              SizedBox(
+                height: 20.h,
+              ),
+             Consumer<ImagePickerProvider>(
+                builder: (context, value, child) {
+                  return value.isGivingToCloudinary==true?
+                  LoadingAnimationButton() :ElevatedButtonWidget(
+                    text: "Next",
+                    height: 50.h,
+                    width: double.infinity,
+                    elevation: 5,
+                    backgroundColor: 0xFFB39DDB,
+                    fontSize: 17.spMin,
+                    textColor: Color(0xFF212121),
+                    borderRadius: 12.r,
+                    tap: () async {
+                      // petProfileModel.location?.place=
+                      if (locationProvider.locationPlcae != null &&
+                          locationProvider.position != null&&imageprovider.fileImage.isNotEmpty) {
+                        log(locationProvider.locationPlcae!.locality.toString());
+                  
+                        petProfileModel!.location = Location(
+                            latitude: locationProvider.position?.latitude,
+                            longitude: locationProvider.position?.longitude,
+                            place:
+                                "${locationProvider.locationPlcae!.locality} , ${locationProvider.locationPlcae!.administrativeArea}");
+                  
+                        // log(petProfileModel?.location?.place.toString()??"ad");
+                        
+                  
+                        await imageprovider.uploadimageToClodinary();
+                        petProfileModel!.imageUrls=imageprovider.imagesFromCloudinaryurl.toList();
+                        log(imageprovider.imagesFromCloudinaryurl.toString());
+                        onChange(petProfileModel!);
+                      } else {
+                        snackbar(context, "Must fill this page", 0xFFFFD180,
+                            Icons.warning_amber_rounded);
+                      }
+                    },
+                    borderColor: 0xFFB39DDB,
+                  );
+                }
+              )
             ],
           ),
         ),

@@ -28,6 +28,10 @@ class ApiServices{
   static Future<Response>get(String lasturl)async{
     return await dio.get(lasturl,);
   }
-  
+  static Future<Response>getpetDetailsWithParms(String lasturl,String? type)async{
+    return await dio.get(lasturl,queryParameters: {
+      if(type!=null)"type":type
+    });
+  }
 }
 

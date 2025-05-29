@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_adoption_app/models/petdetails/petprofile.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/elevatedButtonWidget.dart';
-import 'package:pet_adoption_app/widgets/authwidgets/textFormFieldWidget.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 import 'package:pet_adoption_app/widgets/pet_details/detailsformfield.dart';
 import 'package:pet_adoption_app/widgets/pet_details/pageview/medicalconditionselector.dart';
@@ -228,14 +227,18 @@ class AddPetPage2 extends StatelessWidget {
                         onChange: (value) {
                           log(value.toString());
                           petModelDataEnter?.friendlyWithOtherPets = value;
+                          
                         },
                       ),
 
                       PetCheckboxTile(
                         statusText: "Healthy",
                         onChange: (value) {
-                          log(value.toString());
-                          petModelDataEnter?.healthStatus = value;
+                         
+
+                          bool? last=value;
+                          petModelDataEnter?.healthStatus = last;
+                           log(last.toString());
                         },
                       ),
 
@@ -244,6 +247,7 @@ class AddPetPage2 extends StatelessWidget {
                         onChange: (value) {
                           log(value.toString());
                           petModelDataEnter?.vaccinationStatus = value;
+                          
                         },
                       ),
 

@@ -1,3 +1,4 @@
+
 class PetProfileModel{
   String? petName;
   String? type;
@@ -25,21 +26,21 @@ class PetProfileModel{
     this.type,
     this.breed,
     this.age,
-    this.weight,
+    this.weight="10",
     this.gender,
     this.description,
-    this.healthStatus,
-    this.vaccinationStatus,
-    this.breedingFirstTime,
-    this.pedigreeCertified,
+    this.healthStatus=false,
+    this.vaccinationStatus=false,
+    this.breedingFirstTime=false,
+    this.pedigreeCertified=false,
     this.size,
-    this.friendlyWithOtherPets,
-    this.goodWithKids,
-    this.isTrained,
+    this.friendlyWithOtherPets=false,
+    this.goodWithKids=false,
+    this.isTrained=false,
     this.specialNeeds,
     this.imageUrls,
     this.location,
-    this.availableForAdoption,
+    this.availableForAdoption=true,
     this.contactDetails,
   });
 
