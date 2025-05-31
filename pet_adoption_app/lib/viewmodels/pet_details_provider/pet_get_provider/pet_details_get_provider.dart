@@ -6,6 +6,8 @@ import 'package:pet_adoption_app/services/api_services.dart';
 
 class PetDetailsGetProvider extends ChangeNotifier {
   bool isLoading = false;
+
+  bool isPetNotAvailable = false;
   List<PetProfileModel?> petProfileModelData = [];
 
   Future<void> petGetDetailsApi(String? type) async {
@@ -18,15 +20,19 @@ class PetDetailsGetProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         log("succesfully to fetch pet details: ${response.statusCode}");
         final List<dynamic> data = response.data;
-       
-       
+        if (data.isEmpty) {
+          isPetNotAvailable = true;
+          notifyListeners();
+        } else {
+          isPetNotAvailable = false;
+          notifyListeners();
+        }
 
-        petProfileModelData = data
-            .map(
-              (e) => PetProfileModel.fromJson(e),
-            )
-            .toList();
-            
+        petProfileModelData = data.map((e) {
+          
+          return PetProfileModel.fromJson(e);
+        }).toList();
+
         isLoading = false;
         notifyListeners();
       } else {

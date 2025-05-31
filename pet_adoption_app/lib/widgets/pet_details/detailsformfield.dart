@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailsFormField extends StatelessWidget {
@@ -30,6 +31,11 @@ class DetailsFormField extends StatelessWidget {
       ),
       keyboardType: inputType,
       controller: controller,
+      inputFormatters: [
+        if(inputType==TextInputType.number)
+          FilteringTextInputFormatter.digitsOnly
+        
+      ],
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
         if (value == null || value.trim().isEmpty) {

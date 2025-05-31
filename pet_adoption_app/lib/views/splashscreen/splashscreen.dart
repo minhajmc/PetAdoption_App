@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pet_adoption_app/services/api_services.dart';
+import 'package:pet_adoption_app/viewmodels/pet_details_provider/pageview/location_provider.dart';
 import 'package:pet_adoption_app/views/onboardingscreens/landingscreen.dart';
 import 'package:pet_adoption_app/views/ui/root_scaffold/rootscaffold.dart';
 import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -22,9 +24,11 @@ class _SplashscreenState extends State<Splashscreen> {
     super.initState();
     // Initialize the API services adding barear token to apiservices  --cheking?..
     initBearerToken();
+    Provider.of<LocationProvider>(context,listen: false).getCurrentLocation();
     // Navigate to the LandingScreen after a delay
     Future.delayed(Duration(seconds: 5), () {
       navigateToLandingScreen();
+      
     });
   }
 

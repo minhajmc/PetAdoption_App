@@ -2,10 +2,12 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pet_adoption_app/viewmodels/pet_details_provider/pageview/location_provider.dart';
 import 'package:pet_adoption_app/views/auth/loginscreen/login.dart';
 import 'package:pet_adoption_app/views/auth/signupscreen/signup.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/elevatedButtonWidget.dart';
 import 'package:pet_adoption_app/widgets/authwidgets/pawImagewithText.dart';
+import 'package:provider/provider.dart';
 
 class Welcomeauthscreen extends StatefulWidget {
   const Welcomeauthscreen({super.key});
@@ -16,8 +18,10 @@ class Welcomeauthscreen extends StatefulWidget {
 
 class _WelcomeAuthScreen extends State<Welcomeauthscreen> {
     bool isAnimated=false;
+    
   @override
   Widget build(BuildContext context) {
+    final locationProvider=Provider.of<LocationProvider>(context,listen: false);
 
  
     return Scaffold(
@@ -98,7 +102,8 @@ class _WelcomeAuthScreen extends State<Welcomeauthscreen> {
                     fontSize: 18.spMin,
                     textColor: Colors.black,
                     borderRadius: 20.r,
-                    tap: () {
+                    tap: () async{
+                      await locationProvider.getCurrentLocation();
                       Navigator.push(
                           context,
                           MaterialPageRoute(

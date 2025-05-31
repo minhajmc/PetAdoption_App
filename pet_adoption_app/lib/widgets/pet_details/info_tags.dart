@@ -18,7 +18,7 @@ class InfoTags extends StatelessWidget {
     return Card(elevation: 7,
       child: IntrinsicWidth(
         child: Container(
-          height: 80.h,
+          height: 70.h,
           width: 107.w,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
@@ -32,12 +32,12 @@ class InfoTags extends StatelessWidget {
                   words: label,
                   color: Colors.black54,
                   fontWeight: FontWeight.normal,
-                  fontSize: 14.spMin),
+                  fontSize: 13.spMin),
               TextWidget(
                   words: value,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  fontSize: 18.spMin),
+                  fontSize: 17.spMin),
             ],
           ),
         ),

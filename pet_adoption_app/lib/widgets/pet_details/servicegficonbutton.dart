@@ -5,7 +5,8 @@ import 'package:getwidget/components/button/gf_icon_button.dart';
 class ServiceGfIconButton extends StatelessWidget {
   final int backgroundColor;
   final  Widget icon;
-  const ServiceGfIconButton({super.key,required this.backgroundColor,required this.icon});
+  final VoidCallback callback;
+  const ServiceGfIconButton({super.key,required this.backgroundColor,required this.icon,required this.callback});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,6 @@ class ServiceGfIconButton extends StatelessWidget {
 
         color:  Color(backgroundColor),
         icon: icon,
-        onPressed: () {});
+        onPressed: callback);
   }
 }

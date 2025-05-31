@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:pet_adoption_app/viewmodels/pet_details_provider/pet_get_provider/pet_details_get_provider.dart';
+import 'package:provider/provider.dart';
 
 class CategoryofPet extends StatefulWidget {
   const CategoryofPet({super.key});
@@ -25,6 +27,8 @@ class _CategoryofPetState extends State<CategoryofPet> {
   int onIndex=0;
   @override
   Widget build(BuildContext context) {
+
+   final getProvider= Provider.of<PetDetailsGetProvider>(context,listen: false);
     return Padding(
       padding:  EdgeInsets.only(right: 6.w, left: 12.w),
       child: SizedBox(
@@ -56,11 +60,17 @@ class _CategoryofPetState extends State<CategoryofPet> {
             ],
           ),
           selected: onIndex == index,
-          onSelected: (selected) {
+          onSelected: (selected) async{
             setState(() {
               onIndex = index;
             });
+            if(index==0){
+             await getProvider.petGetDetailsApi(null);
+            }else{
+              await getProvider.petGetDetailsApi(categoryofPets[index]["petType"]);
+            }
             log(categoryofPets[index]['petType']);
+            log(index.toString());
           },
           selectedColor: Color(0xFF827397),
           backgroundColor: Color.fromARGB(171, 220, 219, 219),

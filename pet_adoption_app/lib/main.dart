@@ -8,6 +8,7 @@ import 'package:pet_adoption_app/viewmodels/pet_details_provider/pageview/locati
 import 'package:pet_adoption_app/viewmodels/pet_details_provider/pageview/owner_profile_provider.dart';
 import 'package:pet_adoption_app/viewmodels/pet_details_provider/pet_add_provider/pet_details_add_provider.dart';
 import 'package:pet_adoption_app/viewmodels/pet_details_provider/pet_get_provider/pet_details_get_provider.dart';
+import 'package:pet_adoption_app/viewmodels/pet_details_provider/pet_get_provider/single_pet_details_provider.dart';
 import 'package:pet_adoption_app/viewmodels/profile_provider/profileget_provider.dart';
 import 'package:pet_adoption_app/viewmodels/profile_provider/profileupdate_provider.dart';
 import 'package:pet_adoption_app/views/splashscreen/splashscreen.dart';
@@ -44,6 +45,7 @@ class PetAdoptionApp extends StatelessWidget {
            ChangeNotifierProvider(create: (context) => OwnerProfileProvider(),),
            ChangeNotifierProvider(create: (context) => PetDetailsAddProvider(),),
            ChangeNotifierProvider(create: (context) => PetDetailsGetProvider(),),
+           ChangeNotifierProvider(create: (context) => SinglePetDetailsGetProvider(),),
         ],
         child: MaterialApp(
         title: "Pet Adoption App",

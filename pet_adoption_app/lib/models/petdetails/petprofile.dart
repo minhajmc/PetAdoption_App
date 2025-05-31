@@ -20,6 +20,7 @@ class PetProfileModel{
   Location? location;
   bool? availableForAdoption;
   ContactDetails? contactDetails;
+  String ?petId;
 
   PetProfileModel({
     this.petName,
@@ -42,11 +43,13 @@ class PetProfileModel{
     this.location,
     this.availableForAdoption=true,
     this.contactDetails,
+    this.petId
   });
 
 
 
   factory PetProfileModel.fromJson(Map<String, dynamic> json) {
+ 
     return PetProfileModel(
       petName: json['petName'],
       type: json['type'],
@@ -67,7 +70,9 @@ class PetProfileModel{
       imageUrls: List<String>.from(json['image_urls']),
       location: Location.fromJson(json['location']),
       availableForAdoption: json['available_for_adoption'],
-      contactDetails: ContactDetails.fromJson(json['contact_details']),
+      contactDetails: ContactDetails.fromJson(json['contact_details'],),
+      petId:json['id'],
+      
     );
   }
 
