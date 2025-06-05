@@ -1,80 +1,88 @@
 import 'dart:developer';
-import 'dart:ffi';
-
 import 'package:flutter/widgets.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationProvider extends ChangeNotifier {
   bool isLocationPicked = false;
-  Placemark ?locationPlcae;
-
+  Placemark? locationPlace;
   Position? position;
   String? message;
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
   Future<void> getCurrentLocation() async {
-    bool serviceEnabled;
-    LocationPermission permission;
+    if (_isLoading) return;
+    _isLoading = true;
+    notifyListeners();
 
     try {
       // Check if location services are enabled
-      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      final serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
-        log('Location services are disabled.');
         message = "Location services are disabled";
+        isLocationPicked = false;
+        _isLoading = false;
         notifyListeners();
+        return;
       }
 
       // Check for permission
-      permission = await Geolocator.checkPermission();
+      LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          log('Location permissions are denied');
           message = "Location permissions are denied";
+          isLocationPicked = false;
+          _isLoading = false;
           notifyListeners();
+          return;
         }
       }
 
       if (permission == LocationPermission.deniedForever) {
-        log('Location permissions are permanently denied.');
         message = "Location permissions are permanently denied";
+        isLocationPicked = false;
+        _isLoading = false;
         notifyListeners();
+        return;
       }
 
-      // Get location
-      Position directposition = await Geolocator.getCurrentPosition(
+      // Get current position
+      Position currentPosition = await Geolocator.getCurrentPosition(
         locationSettings: AndroidSettings(
           accuracy: LocationAccuracy.high,
         ),
       );
-      if (directposition.toString().isNotEmpty){
-       await getPlaceFromCoordinate(directposition.latitude, directposition.longitude);
 
-        message = "SuccesFully Picked Your Location";
-        isLocationPicked = true;
-        notifyListeners();
-      }
-      position = directposition;
-      notifyListeners();
-      log(directposition.accuracy.toString());
+      // Get place name
+      await getPlaceFromCoordinate(currentPosition.latitude, currentPosition.longitude);
+
+      // Update state
+      position = currentPosition;
+      isLocationPicked = true;
+      message = "Successfully picked your location";
+
     } catch (e) {
-      log("Error From Location picking$e");
+      log("Error from location picking: $e");
+      message = "Failed to get location";
+      isLocationPicked = false;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
     }
   }
 
- Future <void> getPlaceFromCoordinate(double lat, double lng)async{
-    try{
-      final placeMark=await placemarkFromCoordinates(lat, lng);
-      if(placeMark.isNotEmpty){
-        Placemark place=placeMark[0];
-        locationPlcae=place;
-        notifyListeners();
-        log(place.locality.toString());
+  Future<void> getPlaceFromCoordinate(double lat, double lng) async {
+    try {
+      final placeMarks = await placemarkFromCoordinates(lat, lng);
+      if (placeMarks.isNotEmpty) {
+        locationPlace = placeMarks.first;
+        log("Location: ${locationPlace?.locality}");
       }
-    }catch(e){
-      log("error from decoding ltd lng to place $e");
+    } catch (e) {
+      log("Error from decoding lat/lng to place: $e");
     }
-
-
   }
 }

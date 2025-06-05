@@ -6,9 +6,9 @@ import 'package:pet_adoption_app/widgets/commonWidgets/textwidget.dart';
 
 class CarouselSection extends StatelessWidget {
   final double containerTextSizeHeight;
-  CarouselSection({super.key,required this.containerTextSizeHeight});
+  const CarouselSection({super.key, required this.containerTextSizeHeight});
 
-  final List<Map<String, dynamic>> carouselData = [
+  static const List<Map<String, dynamic>> carouselData = [
     {
       "image": "assets/mainuislideimg/carouselimg/cat_img1.jpg",
       "title": "Meet Your New Best Friend!",
@@ -21,17 +21,17 @@ class CarouselSection extends StatelessWidget {
       "subtitle": "🐾 Adopt happiness, one paw at a time!"
     },
     {
-      "image":
-          "assets/mainuislideimg/carouselimg/bird_img3.jpg",
+      "image": "assets/mainuislideimg/carouselimg/bird_img3.jpg",
       "title": "Chirp Your Way to Joy!",
-      "subtitle": "🐦 Let the melodies of a feathered \n friend brighten your days."
+      "subtitle":
+          "🐦 Let the melodies of a feathered \n friend brighten your days."
     },
     {
       "image": "assets/mainuislideimg/carouselimg/cat_dog_img4.jpg",
       "title": "Furry Friends Await!",
       "subtitle": "🏡 Give a loving home to a loyal buddy."
     },
-        {
+    {
       "image": "assets/mainuislideimg/carouselimg/kitty_img5.jpg",
       "title": "Paws and Smiles",
       "subtitle": "😊 A tail wag is just one adoption away!"
@@ -41,7 +41,6 @@ class CarouselSection extends StatelessWidget {
       "title": "Unconditional Love",
       "subtitle": "🐕 Bring joy into your life — adopt today!"
     },
-
     {
       "image": "assets/mainuislideimg/carouselimg/cat_img7.jpg",
       "title": "Forever Friends",
@@ -55,10 +54,8 @@ class CarouselSection extends StatelessWidget {
       items: carouselData.map(
         (data) {
           return SizedBox(
-             
-
               child: Padding(
-            padding:  EdgeInsets.all(6.r),
+            padding: EdgeInsets.all(6.r),
             child: Card(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.r)),
@@ -77,7 +74,7 @@ class CarouselSection extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration:const BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -88,7 +85,7 @@ class CarouselSection extends StatelessWidget {
                         ),
                       ),
                       width: 1.sw,
-                      height:containerTextSizeHeight,
+                      height: containerTextSizeHeight,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -101,10 +98,12 @@ class CarouselSection extends StatelessWidget {
                             height: 5.h,
                           ),
                           TextWidget(
-                              words:data["subtitle"],
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 12.spMin,textAlign: TextAlign.center,)
+                            words: data["subtitle"],
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 12.spMin,
+                            textAlign: TextAlign.center,
+                          ),
                         ],
                       ),
                     ),
@@ -116,7 +115,7 @@ class CarouselSection extends StatelessWidget {
         },
       ).toList(),
       autoPlay: true,
-      autoPlayAnimationDuration: Duration(milliseconds: 1000),
+      autoPlayAnimationDuration:const Duration(milliseconds: 1000),
     );
   }
 }

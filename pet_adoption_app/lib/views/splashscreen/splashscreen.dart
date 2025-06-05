@@ -22,38 +22,53 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
     super.initState();
-    // Initialize the API services adding barear token to apiservices  --cheking?..
-    initBearerToken();
-    Provider.of<LocationProvider>(context,listen: false).getCurrentLocation();
-    // Navigate to the LandingScreen after a delay
-    Future.delayed(Duration(seconds: 5), () {
-      navigateToLandingScreen();
-      
-    });
+    initSplash();
   }
 
-  void navigateToLandingScreen() async{
-     final prefs = await SharedPreferences.getInstance();
+void initSplash() async {
+  try {
+    await initBearerToken();
+
+    if (!mounted) return;
+    await Provider.of<LocationProvider>(context, listen: false)
+        .getCurrentLocation();
+
+    if (!mounted) return;
+    await Future.delayed(const Duration(seconds: 5));
+    if (!mounted) return;
+    await navigateToLandingScreen();
+  } catch (e) {
+    log("Splashscreen error: $e");
+  }
+}
+
+
+  Future<void> navigateToLandingScreen() async {
+    final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString("bearerToken");
-
-    if(token!=null){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RootScaffold(),));
-    }else{
-    Navigator.pushReplacement(
-      context,
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const Landingscreen(),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
-        },
-        transitionDuration: const Duration(milliseconds: 1000),
-      ),
-    );
-  }
+    if (!mounted) return;
+    if (token != null) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const RootScaffold(),
+          ));
+    } else {
+      Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const Landingscreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 1000),
+        ),
+      );
+    }
   }
 
   Future<void> initBearerToken() async {

@@ -14,13 +14,12 @@ class CategoryofPet extends StatefulWidget {
 }
 
 class _CategoryofPetState extends State<CategoryofPet> {
- final List<Map<String, dynamic>> categoryofPets = [
+ static const List<Map<String, dynamic>> categoryofPets =[
     {"image":"assets/mainuislideimg/categoriesimg/pets.png","petType":"All","color":Colors.deepPurple},
     {"image":"assets/mainuislideimg/categoriesimg/cat64.png","petType":"Cat","color":	Color(0xFF9C27B0)},
-    {"image":"assets/mainuislideimg/categoriesimg/dog (2).png","petType":"Dog","color":Color(0xFF42A5F5)},
-    {"image":"assets/mainuislideimg/categoriesimg/rabbit.png","petType":"Rabbit","color":	Color(0xFFF48FB1)},
-    {"image":"assets/mainuislideimg/categoriesimg/hamster.png","petType":"Hams","color":Color(0xFFFFB74D)},
-    {"image":"assets/mainuislideimg/categoriesimg/turtle.png","petType":"Turtle","color":Color(0xFF4DB6AC)},
+    {"image":"assets/mainuislideimg/categoriesimg/dog (2).png","petType":"Dog","color": Color(0xFF42A5F5)},
+    {"image":"assets/mainuislideimg/categoriesimg/hamster.png","petType":"Hams","color": Color(0xFFFFB74D)},
+    {"image":"assets/mainuislideimg/categoriesimg/turtle.png","petType":"Turtle","color": Color(0xFF4DB6AC)},
 
   ];
   
@@ -72,8 +71,8 @@ class _CategoryofPetState extends State<CategoryofPet> {
             log(categoryofPets[index]['petType']);
             log(index.toString());
           },
-          selectedColor: Color(0xFF827397),
-          backgroundColor: Color.fromARGB(171, 220, 219, 219),
+          selectedColor:const Color(0xFF827397),
+          backgroundColor:const Color.fromARGB(171, 220, 219, 219),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.r),
           ),

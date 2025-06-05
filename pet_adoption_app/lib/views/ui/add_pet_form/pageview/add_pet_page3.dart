@@ -66,7 +66,7 @@ class AddPetPage3 extends StatelessWidget {
                           hintStyle: TextStyle(
                               color: Colors.deepPurple, fontSize: 18.spMin),
                           hintText:
-                              " Place : ${locationProvider.locationPlcae!.locality} ,${locationProvider.locationPlcae!.administrativeArea}"),
+                              " Place : ${locationProvider.locationPlace!.locality} ,${locationProvider.locationPlace!.administrativeArea}"),
                     )
                   : SlideAction(
                       height: 60.h,
@@ -219,15 +219,15 @@ class AddPetPage3 extends StatelessWidget {
                     borderRadius: 12.r,
                     tap: () async {
                       // petProfileModel.location?.place=
-                      if (locationProvider.locationPlcae != null &&
+                      if (locationProvider.locationPlace!= null &&
                           locationProvider.position != null&&imageprovider.fileImage.isNotEmpty) {
-                        log(locationProvider.locationPlcae!.locality.toString());
+                        log(locationProvider.locationPlace!.locality.toString());
                   
                         petProfileModel!.location = Location(
                             latitude: locationProvider.position?.latitude,
                             longitude: locationProvider.position?.longitude,
                             place:
-                                "${locationProvider.locationPlcae!.locality} , ${locationProvider.locationPlcae!.administrativeArea}");
+                                "${locationProvider.locationPlace!.locality} , ${locationProvider.locationPlace!.administrativeArea}");
                   
                         // log(petProfileModel?.location?.place.toString()??"ad");
                         

@@ -18,16 +18,16 @@ class SearchwithIcon extends StatelessWidget {
                         child: Container(
                             height: 45.h,
                             decoration: BoxDecoration(
-                              color: Color(0xFFE0DADA),
+                              color:const Color(0xFFE0DADA),
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             padding: EdgeInsets.all(10.r),
-                            child: TextField(
+                            child:const TextField(
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Search...",
                                   hintStyle: TextStyle(
-                                      color: const Color(0xFF81678C))),
+                                      color:  Color(0xFF81678C))),
                             )),
                       ),
                       SizedBox(
@@ -36,7 +36,7 @@ class SearchwithIcon extends StatelessWidget {
                       ClipRRect(
                           borderRadius: BorderRadius.circular(10.r),
                           child: GFIconButton(
-                            icon: Icon(Icons.search),
+                            icon:const Icon(Icons.search),
                             onPressed: () {},
                             shape: GFIconButtonShape.standard,
                             color: const Color(0xFF827397),

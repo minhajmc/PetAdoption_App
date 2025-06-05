@@ -22,30 +22,32 @@ final  double gfSize;
         return profileData.isLoading==true?GFShimmer(
                 child: GFListTile(
                   avatar: GFAvatar(
-                    backgroundColor: Colors.grey,
+                    backgroundColor:const Color(0xFF9E9E9E)//normal grey
+,
                     size: gfSize,
                  
                   ),
                   title: Container(
                     height: 20.h,
                     width: 120.w,
-                    color: Colors.grey[300],
+                    color:const Color(0xFFE0E0E0)//grey[300]
+,
                   ),
                   subTitle: Container(
                     height: 20.h,
                     width: 160.w,
-                    color: Colors.grey[300],
+                    color: const Color(0xFFE0E0E0),
                   ),
                   icon: Container(
                     height: 20.h,
                     width: 20.w,
-                    color: Colors.grey[300],
+                    color:const Color(0xFFE0E0E0),
                   ),
                 ),
               ):
          GFListTile(
             avatar: GFAvatar(
-              backgroundColor: Colors.grey,
+              backgroundColor: const Color(0xFF9E9E9E),
               backgroundImage: profileModelData?.imageUrl!=null?CachedNetworkImageProvider(  "${profileModelData!.imageUrl}",):null,
               
               size: gfSize,

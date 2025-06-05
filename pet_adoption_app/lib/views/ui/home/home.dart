@@ -26,21 +26,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<String> image = [
-    "assets/mainuislideimg/carouselimg/puppy_img6.jpg",
-    "assets/mainuislideimg/carouselimg/puppy_img6.jpg",
-    "assets/mainuislideimg/carouselimg/puppy_img6.jpg"
-  ];
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
     // Avoid triggering rebuild while widget is still building
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ProfileGetProvider>(context, listen: false).getProfile();
-      Provider.of<PetDetailsGetProvider>(context, listen: false)
-          .petGetDetailsApi(null);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.wait([
+        Provider.of<ProfileGetProvider>(context, listen: false).getProfile(),
+        Provider.of<PetDetailsGetProvider>(context, listen: false)
+            .petGetDetailsApi(null),
+      ]);
     });
   }
 
@@ -77,19 +73,19 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 TextWidget(
                     words: "Pet Categorties",
-                    color: Color(0xFF5F5B5B),
+                    color: const Color(0xFF5F5B5B),
                     fontWeight: FontWeight.bold,
                     fontSize: 18.spMin),
                 TextWidget(
                     words: "Slide More",
-                    color: Color(0xFF827397),
+                    color: const Color(0xFF827397),
                     fontWeight: FontWeight.normal,
                     fontSize: 13.spMin),
               ],
             ),
           ),
           //categariesofpets
-          CategoryofPet(),
+          const CategoryofPet(),
 
           //Adopt Option
           Padding(
@@ -99,12 +95,12 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 TextWidget(
                     words: "Adopt pet",
-                    color: Color(0xFF5F5B5B),
+                    color: const Color(0xFF5F5B5B),
                     fontWeight: FontWeight.bold,
                     fontSize: 18.spMin),
                 TextWidget(
                     words: "See all",
-                    color: Color(0xFF5F5B5B),
+                    color: const Color(0xFF5F5B5B),
                     fontWeight: FontWeight.normal,
                     fontSize: 13.spMin),
               ],
@@ -130,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
             }
 
             return petdetails.isLoading == true
-                ? ShimmerEffect()
+                ? const ShimmerEffect()
                 : SizedBox(
                     height: 300.h,
                     child: ListView.builder(
@@ -144,7 +140,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 final petid = petdetails
                                     .petProfileModelData[index]!.petId;
                                 Provider.of<SinglePetDetailsGetProvider>(
-                                        context,listen: false)
+                                        context,
+                                        listen: false)
                                     .singlePetDetailsGet(petid!);
 
                                 Navigator.push(
@@ -187,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               child: Align(
                                                   alignment: Alignment.topRight,
                                                   child: GFIconButton(
-                                                    icon: Icon(
+                                                    icon: const Icon(
                                                       Icons.favorite,
                                                     ),
                                                     onPressed: () {
@@ -243,29 +240,35 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ? Container(
                                                     height: 40.h,
                                                     width: 40.w,
-                                                    decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color:
-                                                            Color(0x308EB1E5)),
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            color: Color(
+                                                                0x308EB1E5)),
                                                     child: Center(
                                                         child: Icon(
                                                       Icons.male_rounded,
                                                       size: 30.w,
-                                                      color: Color(0xFF8EB1E5),
+                                                      color: const Color(
+                                                          0xFF8EB1E5),
                                                     )),
                                                   )
                                                 : Container(
                                                     height: 40.h,
                                                     width: 40.w,
-                                                    decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color:
-                                                            Color(0x30F672E1)),
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            color: Color(
+                                                                0x30F672E1)),
                                                     child: Center(
                                                         child: Icon(
                                                       Icons.female_rounded,
                                                       size: 30.w,
-                                                      color: Color(0xFFF672E1),
+                                                      color: const Color(
+                                                          0xFFF672E1),
                                                     )),
                                                   ),
                                           ],
