@@ -22,10 +22,12 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   void initState() {
     super.initState();
-    initSplash();
+    WidgetsBinding.instance.addPostFrameCallback((_)async {
+     await initSplash();
+    });
   }
 
-void initSplash() async {
+Future<void> initSplash() async {
   try {
     await initBearerToken();
 
@@ -93,6 +95,7 @@ void initSplash() async {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
+           
             Color(0xFFFDEBD0), // creamy peach
             Color(0xFFFADBD8), // pastel coral
             Color(0xFFD6EAF8), // soft baby blue

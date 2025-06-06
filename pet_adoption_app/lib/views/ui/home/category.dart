@@ -18,6 +18,7 @@ class _CategoryofPetState extends State<CategoryofPet> {
     {"image":"assets/mainuislideimg/categoriesimg/pets.png","petType":"All","color":Colors.deepPurple},
     {"image":"assets/mainuislideimg/categoriesimg/cat64.png","petType":"Cat","color":	Color(0xFF9C27B0)},
     {"image":"assets/mainuislideimg/categoriesimg/dog (2).png","petType":"Dog","color": Color(0xFF42A5F5)},
+    {"image":"assets/mainuislideimg/categoriesimg/rabbit.png","petType":"Rabbit","color": Color.fromARGB(255, 241, 59, 229)},
     {"image":"assets/mainuislideimg/categoriesimg/hamster.png","petType":"Hams","color": Color(0xFFFFB74D)},
     {"image":"assets/mainuislideimg/categoriesimg/turtle.png","petType":"Turtle","color": Color(0xFF4DB6AC)},
 
